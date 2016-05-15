@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<versions>
+    <version string="3.00 - 6.50" pic="1fd0302"/>
+    <version string="7.00" pic="3d6aa45f"/>
+    <version string="7.01 - 7.10" pic="3db01d88"/>
+    <version string="7.13" pic="3fd4a6b8"/>
+    <version string="7.21" pic="3fdeebcd"/>
+    <version string="7.23 - 7.30" pic="404df67e"/>
+    <version string="7.40 - 7.41" pic="419c9ca8"/>
+    <version string="7.50 - 7.60" pic="42e68175"/>
+    <version string="7.70 - 7.72" pic="4450c8d8"/>
+    <version string="7.80 - 7.81" pic="44cdc9c8"/>
+    <version string="7.90 - 8.00" pic="45670923"/>
+    <version string="8.10 - 8.11" pic="4742fcd7"/>
+    <version string="8.20 - 8.31" pic="48562106"/>
+    <version string="8.40 - 8.42" pic="49144178"/>
+    <version string="8.50" pic="4a2fa8d6"/>
+    <version string="8.52" pic="4ac1ec37"/>
+    <version string="8.53 - 8.61" pic="4ae5c3d3"/>
+    <version string="8.62" pic="4c651cd8"/>
+    <version string="8.70 - 8.71" pic="4cf4cc54"/>
+    <version string="8.72 - 9.00" pic="4da2d2b5"/>
+    <version string="9.10" pic="4e119cbf"/>
+    <version string="9.20 - 9.46" pic="4e70a0d6"/>
+    <version string="9.50 - 9.52" pic="4f6b5281"/>
+    <version string="9.53" pic="4f8c231a"/>
+    <version string="9.54 - 9.71" pic="4fba4289"/>
+    <version string="9.80 - 9.83" pic="50a6469d"/>
+    <version string="9.84 - 9.86" pic="51138564"/>
+    <version string="10.00 - 10.13" pic="51ac90a1"/>
+    <version string="10.20 - 10.31" pic="52131b61"/>
+    <version string="10.32 - 10.35" pic="52ce7d34"/>
+    <version string="10.36 - 10.37" pic="52de78da"/>
+    <version string="10.38 - 10.52" pic="53208400"/>
+    <version string="10.53 - 10.54" pic="53baa101"/>
+    <version string="10.55 - 10.57" pic="54070bb5"/>
+    <version string="10.58 - 10.79" pic="542100c1"/>
+    <version string="10.80 - 10.82" pic="557fe565"/>
+    <version string="10.90 - 10.91" pic="5630a70c"/>
+    <version string="10.92" pic="56c5dde7"/>
+</versions>

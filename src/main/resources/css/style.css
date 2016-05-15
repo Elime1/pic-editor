@@ -1,0 +1,159 @@
+
+.scroll-pane {
+    -fx-background-color:transparent;
+    -fx-border-color: rgb(23, 26, 35);
+}
+
+.content-panel {
+    -fx-background: rgb(40, 43, 52);
+    -fx-background-color: rgb(33, 36, 43);
+}
+
+.side-panel {
+    -fx-background-color: rgb(33, 36, 43);
+    -fx-control-inner-background: rgb(23, 26, 35);
+}
+
+.app-label {
+    -fx-font-family: "Verdana";
+    -fx-text-fill: rgb(168, 168, 168);;
+}
+
+.imageBackground {
+    -fx-border-width:0;
+}
+
+.separator {
+    -fx-background: rgb(23, 26, 35);
+}
+
+.left-side-button {
+    -fx-background-color: rgb(40, 43, 52);
+    -fx-text-fill: rgb(168, 168, 168);
+    -fx-font-family: "Verdana";
+    -fx-border-color: rgb(23, 26, 35);
+    -fx-border-width: 1px;
+}
+
+.left-side-button:hover {
+    -fx-text-fill: #fafafa;
+    -fx-background-color: rgb(50, 53, 62);
+}
+
+
+.next-image-button {
+    -fx-background-color: rgb(40, 43, 52);
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(23, 26, 35);
+    -fx-shape: "M 240.54492 113.77344 L 240.54492 178.07617 L 100 178.07617 L 100 275.21875 L 240.54492 275.21875 L 240.54492 339.52344 L 418.9082 226.64844 L 240.54492 113.77344 z";
+}
+
+.previous-image-button {
+    -fx-background-color: rgb(40, 43, 52);
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(23, 26, 35);
+    -fx-shape: "m 278.36328,113.77344 0,64.30273 140.54492,0 0,97.14258 -140.54492,0 0,64.30469 L 100,226.64844 278.36328,113.77344 Z";
+}
+
+.next-image-button:hover, .previous-image-button:hover{
+    -fx-background-color: rgb(50, 53, 62);
+}
+
+.progress-bar .track {
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-background-color: rgb(33, 36, 43);
+}
+
+.progress-bar .bar {
+    -fx-padding: 0.2;
+    -fx-background-color: rgb(50,50,255);
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.info-dialog {
+    -fx-alignment: center;
+}
+
+/****************************************************************
+
+  ScrollBar Skin
+
+****************************************************************/
+.scroll-bar{
+ -fx-background-color: rgb(96,96,96);
+ -fx-background-radius: 2em;
+}
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+ -fx-background-color: transparent;
+ -fx-border-color:transparent;
+ -fx-background-radius: 2em;
+}
+.scroll-bar:vertical .track-background,
+.scroll-bar:horizontal .track-background {
+ -fx-background-color: transparent;
+ -fx-background-insets: 0;
+ -fx-background-radius: 2em;
+}
+.scroll-bar:horizontal .thumb {
+ -fx-background-color: rgb(211,211,211);
+ -fx-background-insets: 4 0 4 0;
+ -fx-background-radius: 2em;
+}
+.scroll-bar:vertical .thumb {
+ -fx-background-color: rgb(211,211,211);
+ -fx-background-insets: 0 4 0 4;
+ -fx-background-radius: 2em;
+}
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+ -fx-background-color: rgb(231,231,231);
+}
+.scroll-bar:horizontal .thumb:pressed,
+.scroll-bar:vertical .thumb:pressed {
+ -fx-background-color: rgb(255,255,255);
+}
+.scroll-bar:vertical .increment-button, .scroll-bar:vertical .decrement-button {
+ -fx-background-color:transparent;
+ -fx-background-radius: 2em;
+ -fx-padding: 5;
+}
+.scroll-bar:horizontal .increment-button, .scroll-bar:horizontal .decrement-button {
+ -fx-background-color:transparent;
+ -fx-background-radius: 2em;
+ -fx-padding: 5;
+}
+.scroll-bar:horizontal .increment-arrow {
+ -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+ -fx-background-color: rgb(211,211,211);
+ -fx-padding: 0.25em;
+ -fx-rotate: -90;
+}
+.scroll-bar:vertical .increment-arrow {
+ -fx-background-color: rgb(211,211,211);
+ -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+ -fx-padding: 0.25em;
+ -fx-rotate: 0;
+}
+.scroll-bar:horizontal .decrement-arrow {
+ -fx-background-color: rgb(211,211,211);
+ -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+ -fx-padding: 0.25em;
+ -fx-rotate: 90;
+}
+.scroll-bar:vertical .decrement-arrow {
+ -fx-background-color: rgb(211,211,211);
+ -fx-shape: "M 0 0 L 4 8 L 8 0 Z";
+ -fx-padding: 0.25em;
+ -fx-rotate: -180;
+}
+.scroll-bar:vertical:focused,
+.scroll-bar:horizontal:focused {
+ -fx-background-color: transparent,rgb(96,96,96),rgb(96,96,96);
+}
+
+.corner {
+    -fx-background-color: transparent;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="[%d{HH:mm:ss}] %-5p: %t - %m (%c) %n"/>
+		</Console>
+		<File name="file" fileName="${sys:user.home}/PicEditor/logs/${date:yyyy-MM-dd}.log" append="true">
+			<PatternLayout pattern="[%d{HH:mm:ss}] %-5p: %t - %m (%c) %n"/>
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger name="elime.piceditor" level="info" additivity="false">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Logger>
+		<Root level="error">
+			<AppenderRef ref="console"/>
+		</Root>
+	</Loggers>
+</Configuration>
