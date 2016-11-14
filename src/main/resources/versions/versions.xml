@@ -37,5 +37,6 @@
     <version string="10.58 - 10.79" pic="542100c1"/>
     <version string="10.80 - 10.82" pic="557fe565"/>
     <version string="10.90 - 10.91" pic="5630a70c"/>
-    <version string="10.92" pic="56c5dde7"/>
+    <version string="10.92 - 10.96" pic="56c5dde7"/>
+    <version string="10.97 - 10.98" pic="577c9bde"/>
 </versions>
