@@ -9,7 +9,7 @@
 		</File>
 	</Appenders>
 	<Loggers>
-		<Logger name="elime.piceditor" level="info" additivity="false">
+		<Logger name="elime.piceditor" level="debug" additivity="false">
 			<AppenderRef ref="console" />
 			<AppenderRef ref="file" />
 		</Logger>
