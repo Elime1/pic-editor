@@ -65,40 +65,17 @@ public class MainViewController {
 
     private boolean dragFromImageView = false;
 
-    //////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
     //Initialize
 
-    public void init(Stage window) {
+    public void init(Stage window, Services services) {
         this.window = window;
         progressBar.setProgress(0.0);
         imageCountLabel.setAlignment(Pos.CENTER);
         initButtonEvents();
         initDragEvents();
-    }
-
-    public void setServices(Services services) {
-        this.fileChooserService = services.getFileChooserService();
-        this.imageService = services.getImageService();
-        this.picService = services.getPicService();
-        this.versionService = services.getVersionService();
-    }
-
-    public void setupKeyListener(Scene scene) {
-        scene.setOnKeyPressed(event -> {
-            KeyCode keyCode = event.getCode();
-            if (keyCode.equals(KeyCode.RIGHT)) {nextImage();}
-            else if (keyCode.equals(KeyCode.LEFT)) {previousImage();}
-            else if (event.isControlDown()) {
-                if (event.isAltDown()) {
-                    if (keyCode.equals(KeyCode.O)) {replaceImage();}
-                    else if (keyCode.equals(KeyCode.S)) {saveImage();}
-                } else {
-                    if (keyCode.equals(KeyCode.O)) {openPic();}
-                    else if (keyCode.equals(KeyCode.S)) {savePic();}
-                    else if (keyCode.equals(KeyCode.R)) {replaceImage();}
-                }
-            }
-        });
+        initServices(services);
+        initKeyListener(window.getScene());
     }
 
     private void initButtonEvents() {
@@ -159,6 +136,55 @@ public class MainViewController {
 
     }
 
+    private void initServices(Services services) {
+        this.fileChooserService = services.getFileChooserService();
+        this.imageService = services.getImageService();
+        this.picService = services.getPicService();
+        this.versionService = services.getVersionService();
+    }
+
+    private void initKeyListener(Scene scene) {
+        scene.setOnKeyPressed(event -> {
+            KeyCode keyCode = event.getCode();
+            if (keyCode.equals(KeyCode.RIGHT)) {nextImage();}
+            else if (keyCode.equals(KeyCode.LEFT)) {previousImage();}
+            else if (event.isControlDown()) {
+                if (event.isAltDown()) {
+                    if (keyCode.equals(KeyCode.O)) {replaceImage();}
+                    else if (keyCode.equals(KeyCode.S)) {saveImage();}
+                } else {
+                    if (keyCode.equals(KeyCode.O)) {openPic();}
+                    else if (keyCode.equals(KeyCode.S)) {savePic();}
+                    else if (keyCode.equals(KeyCode.R)) {replaceImage();}
+                }
+            }
+        });
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    //Public methods
+
+    public boolean openPic(String fileName) {
+        File file = new File(fileName);
+        if (file.exists()) {
+            log.debug("Opening pic: " + file.getPath());
+            loadPic(file);
+            return true;
+        }
+        return false;
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    //Private methods
+
+    private void openPic() {
+        File file = fileChooserService.showOpenPicDialog(window);
+        if (file != null) {
+            log.debug("Opening pic: " + file.getPath());
+            loadPic(file);
+        }
+    }
+
     private void replaceCurrentImage(File file) {
         Thing thing = pic.getThings()[thingIndex];
         Image image = imageService.openImage(file);
@@ -194,14 +220,6 @@ public class MainViewController {
             thingIndex--;
         }
         displayThing(pic.getThings()[thingIndex]);
-    }
-
-    private void openPic() {
-        File file = fileChooserService.showOpenPicDialog(window);
-        if (file != null) {
-            log.debug("Opening pic: " + file.getPath());
-            loadPic(file);
-        }
     }
 
     private void savePic() {

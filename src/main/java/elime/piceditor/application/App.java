@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Elime on 15-08-16.
@@ -34,7 +35,7 @@ public class App extends Application {
         this.window.getIcons().add(new Image(App.class.getResourceAsStream("/img/icon.png")));
 
         log.debug("Setup uncaught exception handler");
-        Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> showErrorAlert(thread, throwable));
+        Thread.currentThread().setUncaughtExceptionHandler(this::showErrorAlert);
 
         //onCloseRequest is not triggered when calling window.close() so we use onHiding instead
         window.setOnHiding(event -> {
@@ -51,11 +52,15 @@ public class App extends Application {
         window.setScene(scene);
 
         MainViewController viewController = loader.getController();
-        viewController.init(window);
-        viewController.setupKeyListener(scene);
-        viewController.setServices(new Services());
+        viewController.init(window, new Services());
 
         log.debug("Scene created");
+
+        //Check for command-line argument
+        List<String> parameters = getParameters().getUnnamed();
+        if (!parameters.isEmpty()) {
+            viewController.openPic(parameters.get(0));
+        }
 
         window.centerOnScreen();
 
