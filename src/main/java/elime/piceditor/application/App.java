@@ -1,10 +1,11 @@
 package elime.piceditor.application;
-import elime.piceditor.controllers.util.ViewHandler;
+import elime.piceditor.controllers.MainViewController;
+import elime.piceditor.service.util.Services;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,25 +42,19 @@ public class App extends Application {
         });
 
         log.debug("Creating scene...");
-        ViewHandler viewHandler = new ViewHandler();
-        AnchorPane root = new AnchorPane();
-        root.getChildren().add(viewHandler);
-        root.setBottomAnchor(viewHandler, 0.0);
-        root.setTopAnchor(viewHandler, 0.0);
-        root.setLeftAnchor(viewHandler, 0.0);
-        root.setRightAnchor(viewHandler, 0.0);
 
-        Scene scene = new Scene(root, 790, 480);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main.fxml"));
+
+        Scene scene = new Scene(loader.load(), 790, 480);
         String css = getClass().getResource("/css/style.css").toExternalForm();
         scene.getStylesheets().add(css);
         window.setScene(scene);
-        log.debug("Scene created");
 
-        log.debug("Loading views...");
-        //Load views after scene has been created
-        viewHandler.loadView("main", "/view/main.fxml");
-        viewHandler.setView("main");
-        log.debug("Views loaded");
+        MainViewController viewController = loader.getController();
+        viewController.setupKeyListener(scene);
+        viewController.setServices(new Services());
+
+        log.debug("Scene created");
 
         window.centerOnScreen();
 

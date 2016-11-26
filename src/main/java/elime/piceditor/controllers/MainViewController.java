@@ -1,7 +1,5 @@
-package elime.piceditor.controllers.impl;
+package elime.piceditor.controllers;
 
-import elime.piceditor.controllers.ControlledView;
-import elime.piceditor.controllers.util.ViewHandler;
 import elime.piceditor.entities.Pic;
 import elime.piceditor.entities.Thing;
 import elime.piceditor.service.*;
@@ -31,7 +29,7 @@ import java.util.ResourceBundle;
 /**
  * Created by Elime on 15-08-04.
  */
-public class MainViewController implements Initializable, ControlledView {
+public class MainViewController implements Initializable {
 
     private static Logger log = LogManager.getLogger();
 
@@ -78,12 +76,6 @@ public class MainViewController implements Initializable, ControlledView {
         initView();
     }
 
-    @Override
-    public void setViewParent(ViewHandler viewHandler) {
-        this.window = viewHandler.getScene().getWindow();
-    }
-
-    @Override
     public void setServices(Services services) {
         this.fileChooserService = services.getFileChooserService();
         this.imageService = services.getImageService();
@@ -91,7 +83,7 @@ public class MainViewController implements Initializable, ControlledView {
         this.versionService = services.getVersionService();
     }
 
-    @Override
+
     public void setupKeyListener(Scene scene) {
         scene.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();
