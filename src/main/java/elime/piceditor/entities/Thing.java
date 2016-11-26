@@ -1,7 +1,5 @@
 package elime.piceditor.entities;
 
-import java.util.Iterator;
-
 /**
  * Created by Elime on 15-08-16.
  */

@@ -102,8 +102,4 @@ public class FileChooserService {
         fileChooser.setTitle(title);
         return fileChooser;
     }
-
-    private void setInitialState(FileChooser fileChooser, ExtensionType type) {
-
-    }
 }

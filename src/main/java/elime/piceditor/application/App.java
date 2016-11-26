@@ -51,6 +51,7 @@ public class App extends Application {
         window.setScene(scene);
 
         MainViewController viewController = loader.getController();
+        viewController.init(window);
         viewController.setupKeyListener(scene);
         viewController.setServices(new Services());
 

@@ -7,7 +7,6 @@ import elime.piceditor.service.exceptions.UnsupportedPicFormatException;
 import elime.piceditor.service.exceptions.WrongImageDimensionsException;
 import elime.piceditor.service.util.Services;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,19 +16,18 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.TransferMode;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 /**
  * Created by Elime on 15-08-04.
  */
-public class MainViewController implements Initializable {
+public class MainViewController {
 
     private static Logger log = LogManager.getLogger();
 
@@ -67,13 +65,15 @@ public class MainViewController implements Initializable {
 
     private boolean dragFromImageView = false;
 
-
     //////////////////////////////////////////////////
     //Initialize
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        initView();
+    public void init(Stage window) {
+        this.window = window;
+        progressBar.setProgress(0.0);
+        imageCountLabel.setAlignment(Pos.CENTER);
+        initButtonEvents();
+        initDragEvents();
     }
 
     public void setServices(Services services) {
@@ -82,7 +82,6 @@ public class MainViewController implements Initializable {
         this.picService = services.getPicService();
         this.versionService = services.getVersionService();
     }
-
 
     public void setupKeyListener(Scene scene) {
         scene.setOnKeyPressed(event -> {
@@ -96,19 +95,11 @@ public class MainViewController implements Initializable {
                 } else {
                     if (keyCode.equals(KeyCode.O)) {openPic();}
                     else if (keyCode.equals(KeyCode.S)) {savePic();}
-                    else if (keyCode.equals(keyCode.R)) {replaceImage();}
+                    else if (keyCode.equals(KeyCode.R)) {replaceImage();}
                 }
             }
         });
     }
-
-    private void initView() {
-        progressBar.setProgress(0.0);
-        imageCountLabel.setAlignment(Pos.CENTER);
-        initButtonEvents();
-        initDragEvents();
-    }
-
 
     private void initButtonEvents() {
 

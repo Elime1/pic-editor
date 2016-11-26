@@ -53,8 +53,7 @@ public class ImageService {
             try {
                 if (fileInputStream != null) fileInputStream.close();
             } catch (IOException e) {
-                log.warn("Failed to close FileInputStream");
-                throw new RuntimeException(e);
+                log.warn("Failed to close FileInputStream", e);
             }
         }
 
