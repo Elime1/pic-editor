@@ -9,6 +9,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.ThreadContext;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class App extends Application {
         this.window.getIcons().add(new Image(App.class.getResourceAsStream("/img/icon.png")));
 
         log.debug("Setup uncaught exception handler");
-        Thread.currentThread().setUncaughtExceptionHandler(this::showErrorAlert);
+        Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> showErrorAlert(throwable));
 
         //onCloseRequest is not triggered when calling window.close() so we use onHiding instead
         window.setOnHiding(event -> {
@@ -56,29 +58,32 @@ public class App extends Application {
 
         log.debug("Scene created");
 
+        window.centerOnScreen();
+
+        log.debug("Showing application window");
+        window.show();
+
         //Check for command-line argument
         List<String> parameters = getParameters().getUnnamed();
         if (!parameters.isEmpty()) {
             viewController.openPic(parameters.get(0));
         }
-
-        window.centerOnScreen();
-
-        log.debug("Showing application window");
-        window.show();
     }
 
-    private void showErrorAlert(Thread thread, Throwable throwable) {
-        log.error(throwable.getMessage(), throwable);
+    private void showErrorAlert(Throwable throwable) {
+        String message = throwable.getMessage();
+        if (message == null) {
+            message = throwable.toString();
+        }
+        log.error(message, throwable);
+        showErrorAlert(message);
+    }
+
+    private void showErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Error");
         alert.setHeaderText(null);
-        String message = throwable.getMessage();
-        if (message == null) {
-            alert.setContentText(throwable.toString());
-        } else {
-            alert.setContentText(message);
-        }
+        alert.setContentText(message);
         alert.initOwner(this.window);
         alert.show();
     }

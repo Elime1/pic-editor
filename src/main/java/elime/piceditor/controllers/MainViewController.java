@@ -162,26 +162,39 @@ public class MainViewController {
     }
 
     ////////////////////////////////////////////////////////////////////////
-    //Public methods
+    //Public
 
-    public boolean openPic(String fileName) {
-        File file = new File(fileName);
-        if (file.exists()) {
-            log.debug("Opening pic: " + file.getPath());
-            loadPic(file);
-            return true;
+    public void openPic(String fileName) {
+        log.debug("Opening file: " + fileName);
+        String extension = fileName.substring(fileName.length() - 4);
+        extension = extension.toLowerCase();
+        if (extension.equals(".pic")) {
+            openPic(new File(fileName));
+        } else {
+            log.debug("The file is not a pic file: " + fileName);
+            showAlert("Failed to open pic", "The file '" + fileName + "' does not seem to be a pic file.");
         }
-        return false;
     }
 
     ////////////////////////////////////////////////////////////////////////
-    //Private methods
+    //Private
 
     private void openPic() {
-        File file = fileChooserService.showOpenPicDialog(window);
-        if (file != null) {
-            log.debug("Opening pic: " + file.getPath());
-            loadPic(file);
+        openPic(fileChooserService.showOpenPicDialog(window));
+    }
+
+    private void openPic(File picFile) {
+        if (picFile != null) {
+            if (picFile.exists()) {
+                try {
+                    loadPic(picFile);
+                } catch (Exception e) {
+                    log.error("Failed to open pic", e);
+                    showAlert("Failed to open pic", "The file '" + picFile.getPath() + "' could not be opened: " + e.toString());
+                }
+            } else {
+                log.warn("The file '" + picFile.getPath() + " does not exist!");
+            }
         }
     }
 
