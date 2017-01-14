@@ -19,6 +19,7 @@ public class ImageService {
     private static Logger log = LogManager.getLogger();
 
     public void saveImage(File file, Image image) {
+        if (image == null) return;
         log.info("Saving image to file: " + file.getPath());
         try {
             String name = file.getName();
