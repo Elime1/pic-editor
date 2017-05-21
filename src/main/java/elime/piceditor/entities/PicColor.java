@@ -1,13 +1,17 @@
 package elime.piceditor.entities;
 
+import lombok.Getter;
+
 /**
  * Created by Elime on 15-08-17.
  */
+
+@Getter
 public class PicColor {
 
-    public byte r;
-    public byte g;
-    public byte b;
+    private byte r;
+    private byte g;
+    private byte b;
 
     public PicColor(byte r, byte g, byte b) {
         this.r = r;

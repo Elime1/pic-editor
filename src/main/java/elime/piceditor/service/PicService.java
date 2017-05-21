@@ -138,9 +138,9 @@ public class PicService {
             buffer.putU8(things[i].getWidth());
             buffer.putU8(things[i].getHeight());
             PicColor bgColor = things[i].getBgColor();
-            buffer.putByte(bgColor.r);
-            buffer.putByte(bgColor.g);
-            buffer.putByte(bgColor.b);
+            buffer.putByte(bgColor.getR());
+            buffer.putByte(bgColor.getG());
+            buffer.putByte(bgColor.getB());
 
             Sprite[] sprites = things[i].getSprites();
             log.debug("The image consists of " + sprites.length + " sprites");
@@ -192,9 +192,9 @@ public class PicService {
                                 size * w + currentPixel % size,
                                 size * h + currentPixel / size,
                                 0xFF << 24 |
-                                        (bgColor.r & 0xFF) << 16 |
-                                        (bgColor.g & 0xFF) << 8 |
-                                        bgColor.b & 0xFF
+                                        (bgColor.getR() & 0xFF) << 16 |
+                                        (bgColor.getG() & 0xFF) << 8 |
+                                        bgColor.getB() & 0xFF
                         );
                         currentPixel++;
                     }
@@ -262,7 +262,7 @@ public class PicService {
                         byte g = (byte) ((argb >> 8) & 0xFF);
                         byte b = (byte) (argb & 0xFF);
 
-                        if (r == bgColor.r && g == bgColor.g && b == bgColor.b) {
+                        if (r == bgColor.getR() && g == bgColor.getG() && b == bgColor.getB()) {
                             backgroundPixels++;
                         } else {break;}
                         currentPixel++;
@@ -283,7 +283,7 @@ public class PicService {
                         byte g = (byte) ((argb >> 8) & 0xFF);
                         byte b = (byte) (argb & 0xFF);
 
-                        if (!(r == bgColor.r && g == bgColor.g && b == bgColor.b)) {
+                        if (!(r == bgColor.getR() && g == bgColor.getG() && b == bgColor.getB())) {
                             buffer.putByte(r);
                             buffer.putByte(g);
                             buffer.putByte(b);
