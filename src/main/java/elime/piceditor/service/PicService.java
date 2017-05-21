@@ -191,10 +191,7 @@ public class PicService {
                         pixelWriter.setArgb(
                                 size * w + currentPixel % size,
                                 size * h + currentPixel / size,
-                                0xFF << 24 |
-                                        (bgColor.getR() & 0xFF) << 16 |
-                                        (bgColor.getG() & 0xFF) << 8 |
-                                        bgColor.getB() & 0xFF
+                                rgbToArgbInt(bgColor.getR(), bgColor.getG(), bgColor.getB())
                         );
                         currentPixel++;
                     }
@@ -202,10 +199,7 @@ public class PicService {
                         pixelWriter.setArgb(
                                 size * w + currentPixel % size,
                                 size * h + currentPixel / size,
-                                0xFF << 24 |
-                                        (pixelData[i++] & 0xFF) << 16 |
-                                        (pixelData[i++] & 0xFF) << 8 |
-                                        pixelData[i++] & 0xFF
+                                rgbToArgbInt(pixelData[i++], pixelData[i++], pixelData[i++])
                         );
                         currentPixel++;
                     }
@@ -258,11 +252,7 @@ public class PicService {
                             break;
                         }
 
-                        byte r = (byte) ((argb >> 16) & 0xFF);
-                        byte g = (byte) ((argb >> 8) & 0xFF);
-                        byte b = (byte) (argb & 0xFF);
-
-                        if (r == bgColor.getR() && g == bgColor.getG() && b == bgColor.getB()) {
+                        if (bgColor.equals(argbIntToPicColor(argb))) {
                             backgroundPixels++;
                         } else {break;}
                         currentPixel++;
@@ -279,14 +269,12 @@ public class PicService {
                             break;
                         }
 
-                        byte r = (byte) ((argb >> 16) & 0xFF);
-                        byte g = (byte) ((argb >> 8) & 0xFF);
-                        byte b = (byte) (argb & 0xFF);
+                        PicColor color = argbIntToPicColor(argb);
 
-                        if (!(r == bgColor.getR() && g == bgColor.getG() && b == bgColor.getB())) {
-                            buffer.putByte(r);
-                            buffer.putByte(g);
-                            buffer.putByte(b);
+                        if (!bgColor.equals(color)) {
+                            buffer.putByte(color.getR());
+                            buffer.putByte(color.getG());
+                            buffer.putByte(color.getB());
                             coloredPixels++;
                         } else {break;}
                         currentPixel++;
@@ -307,5 +295,13 @@ public class PicService {
         thing.setSprites(sprites);
         thing.setWidth(width);
         thing.setHeight(height);
+    }
+
+    private int rgbToArgbInt(byte r, byte g, byte b) {
+        return 0xFF << 24 | (r & 0xFF) << 16 | (g & 0xFF) << 8 | b & 0xFF;
+    }
+
+    private PicColor argbIntToPicColor(int argb) {
+        return new PicColor((byte) ((argb >> 16) & 0xFF), (byte) ((argb >> 8) & 0xFF), (byte) (argb & 0xFF));
     }
 }

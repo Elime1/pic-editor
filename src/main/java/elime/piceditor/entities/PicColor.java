@@ -35,4 +35,13 @@ public class PicColor {
     public String toString() {
         return toRGBString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PicColor c = (PicColor) o;
+        return  r == c.r && g == c.g && b == c.b;
+    }
+
 }
