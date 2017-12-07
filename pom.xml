@@ -7,7 +7,7 @@
 
     <groupId>elime</groupId>
     <artifactId>piceditor</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <name>PicEditor</name>
 
     <packaging>jar</packaging>
@@ -20,6 +20,7 @@
 
         <maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
 
+        <spring.version>5.0.2.RELEASE</spring.version>
         <lombok.version>1.16.16</lombok.version>
         <xom.version>1.2.5</xom.version>
         <junit.version>4.12</junit.version>
@@ -28,6 +29,13 @@
     </properties>
 
     <dependencies>
+
+        <!-- Spring context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
         <!-- Automatic generation -->
         <dependency>
@@ -48,6 +56,18 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
 
@@ -86,7 +106,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>elime.piceditor.application.App</mainClass>
+                            <mainClass>io.github.elime1.piceditor.application.App</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

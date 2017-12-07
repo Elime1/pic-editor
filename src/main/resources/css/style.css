@@ -40,23 +40,22 @@
     -fx-background-color: rgb(50, 53, 62);
 }
 
-
 .next-image-button {
-    -fx-background-color: rgb(40, 43, 52);
+    -fx-background-color: rgb(50, 53, 62);
     -fx-border-width: 1px;
     -fx-border-color: rgb(23, 26, 35);
     -fx-shape: "M 240.54492 113.77344 L 240.54492 178.07617 L 100 178.07617 L 100 275.21875 L 240.54492 275.21875 L 240.54492 339.52344 L 418.9082 226.64844 L 240.54492 113.77344 z";
 }
 
 .previous-image-button {
-    -fx-background-color: rgb(40, 43, 52);
+    -fx-background-color: rgb(50, 53, 62);
     -fx-border-width: 1px;
     -fx-border-color: rgb(23, 26, 35);
     -fx-shape: "m 278.36328,113.77344 0,64.30273 140.54492,0 0,97.14258 -140.54492,0 0,64.30469 L 100,226.64844 278.36328,113.77344 Z";
 }
 
 .next-image-button:hover, .previous-image-button:hover{
-    -fx-background-color: rgb(50, 53, 62);
+    -fx-background-color: rgb(60, 63, 72);
 }
 
 .progress-bar .track {
